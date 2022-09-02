@@ -194,13 +194,13 @@ def menu_p():
     am = utils.get_int('Numero de perguntas por teste: ')
 
     ## Create file for new language
-    new_path = "data/presets/"+l.lower()+".json"
+    new_path = "data/presets/"+l.lower().replace(" ","-")+".json"
     jsonl = open(new_path, "w+")
     jsonl.write("{\n  \"Questoes\": [],\n  \"Total\": 0\n}")
     jsonl.close()
 
     ## Add new language to global data file
-    data["Languages"].append({"Name": l, "Alias": a, "Path": new_path, "Total": 0, "Amount": am})
+    data["Presets"].append({"Name": l, "Alias": a, "Path": new_path, "Total": 0, "Amount": am})
     jsonFile = open("data/data.json", "w+")
     jsonFile.write(json.dumps(data, indent=2))
     jsonFile.close()
@@ -214,7 +214,7 @@ def menu():
         menu_entry_index = terminal_menu.show()
         if (menu_entry_index == 0):
             menu_ql()
-        elif (menu_entry_index == 0):
+        elif (menu_entry_index == 1):
             menu_qp()
         elif (menu_entry_index == 2):
             menu_l()
